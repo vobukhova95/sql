@@ -29,4 +29,14 @@ public class SQLHelper {
             return runner.query(conn, dataSQL, new ScalarHandler<>(), login);
         }
     }
+
+    @SneakyThrows
+    public static void cleanDatabase() {
+        try (Connection conn = getConnection()) {
+            runner.update(conn, "DELETE FROM card_transactions;");
+            runner.update(conn, "DELETE FROM auth_codes;");
+            runner.update(conn, "DELETE FROM cards;");
+            runner.update(conn, "DELETE FROM users;");
+        }
+    }
 }

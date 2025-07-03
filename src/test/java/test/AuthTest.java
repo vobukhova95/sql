@@ -2,6 +2,7 @@ package test;
 
 import data.DataHelper;
 import data.SQLHelper;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import page.LoginPage;
@@ -12,6 +13,11 @@ public class AuthTest {
     @BeforeEach
     void setup() {
         open("http://localhost:9999");
+    }
+
+    @AfterAll
+    static void deleteData() {
+        SQLHelper.cleanDatabase();
     }
 
     @Test
